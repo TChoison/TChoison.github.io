@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Choi&#39;s UE开发小站</title>
+    <title>Choi&#39;s开发小站</title>
     <link>https://TChoison.github.io/</link>
-    <description>Recent content on Choi&#39;s UE开发小站</description>
+    <description>Recent content on Choi&#39;s开发小站</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
-    <lastBuildDate>Thu, 04 Feb 2021 14:58:21 +0800</lastBuildDate><atom:link href="https://TChoison.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 04 Feb 2021 17:22:05 +0800</lastBuildDate><atom:link href="https://TChoison.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>搭建个人博客</title>
+      <link>https://TChoison.github.io/posts/buildblog/</link>
+      <pubDate>Thu, 04 Feb 2021 17:22:05 +0800</pubDate>
+      
+      <guid>https://TChoison.github.io/posts/buildblog/</guid>
+      <description>为什么要搭建个人博客  都2021年了，正经人谁搭建个人博客啊
+ 用什么工具  Github Page 做服务器
+Hugo 生成静态网页
+ 这么弄有几层考虑吧：
+ 国内几家博客站点&amp;hellip;广告多，界面陈旧，不可定制等等问题很多。特别是广告，CSDN的广告让人觉得这就是个三流盗版电子书下载站。 确定不用现成的就要自己搭，但如果从0开始建站太麻烦，且学习路径陡峭，既然有现成的个站Github Page没理由不用 Github Page推荐用Jekyll生成站点，但学习Jekyll需要了解gem语法且在Windows支持并不好。干脆用更流行更快的Hugo  综上暂定用github page写博客，以后买个域名www.choi30.com啥的
+ 怎么搭建 step1 生成个空的Github Page工程（看这儿Github Doc）
+这时候只要往仓库里放个index.html其实就能用了
+step2 用Hugo生成静态网页（看这儿HUGO）
+注意最后只需要将Hugo生成的/public文件夹内容推送到git仓库，否则github那边认不到index.html文件
+step3 打开你的博客
+ Tips  技术博客中不应涉及公司机密 Markdown语法高亮/换行等在不同平台支持不同  使用&amp;amp;nbsp;和&amp;lt;br/&amp;gt;换行 避免引用太多图片。因为需要单独修改html中的url   美化博客站点本身也算一点技术，不必吝啬精力  </description>
+    </item>
+    
     <item>
       <title>测试</title>
       <link>https://TChoison.github.io/posts/test/</link>
@@ -41,15 +60,6 @@
 .uasset在使用中（UE编辑器里）可以细分为模型，蓝图，粒子等等资源。影视制作时不同阶段所需的资源类型不同，总体上分成一下几个大类:
  UE内部资产
   Blueprint 蓝图类 Mesh 网格  StaticMesh 静态网格 SkeletalMesh 可活动网格（骨架）   Materials 材质 Textures 纹理 Particle 粒子 Maps 场景 Sequences 相机帧序列   外部资产</description>
-    </item>
-    
-    <item>
-      <title>get in touch</title>
-      <link>https://TChoison.github.io/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://TChoison.github.io/contact/</guid>
-      <description></description>
     </item>
     
   </channel>

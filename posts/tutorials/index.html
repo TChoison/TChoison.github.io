@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=https://TChoison.github.io/css/syntax.css>
+    <link rel="stylesheet" href=https://TChoison.github.io/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Choi&#39;s UE开发小站</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+
+    <a id="branding" href=https://TChoison.github.io/>
+        
+            Choi&#39;s UE开发小站
+        
+    </a>
+    </header>
+
+    <nav>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">影视流程与文件结构</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#内容提要">内容提要</a></li>
+    <li><a href="#一影视流程概述">一、影视流程概述</a></li>
+    <li><a href="#二影视所需资产">二、影视所需资产</a></li>
+    <li><a href="#三可行的工程文件结构">三、可行的工程文件结构</a></li>
+    <li><a href="#四ue引擎能完成的工作">四、UE引擎能完成的工作</a></li>
+  </ul>
+</nav>
+    <p> <br>
+<!-- raw HTML omitted --></p>
+<h2 id="前言">前言</h2>
+<p>影视制作与游戏制作有共通处，也有大量区别。两者相似点在于都有模型动画特效等的制作和使用，都需要好的剧本情节，不同点在于资产使用方式和权重。</p>
+<p>游戏与影视最大的不同应在于交互，让玩家有参与感从而有更多的代入感。游戏中的动画往往是可复用的短动画，往往只有固定的几十几百帧，只有过场CG动画才需要大量的渲染。如果用实时渲染，那更是不需要离线渲染流程。</p>
+<p>仅从视觉上来看，影视的中心就是动画。动画需要足够流畅，精细，有独特的美术风格。目前能搬上银幕的电影电视剧都只能通过离线渲染才能达到最高级别的特效要求，与此同时高效流畅的实时渲染给影视行业带来的冲击也正在酝酿之中。</p>
+<p> <br>
+<!-- raw HTML omitted --></p>
+<h2 id="内容提要">内容提要</h2>
+<p>这里主要讨论的是影视动画剧在UE全流程中所需要的各种资产，以及这些资产的存放位置。由此会引申出一些问题的思考：</p>
+<ol>
+<li>影视制作大体流程</li>
+<li>UE影视制作需要用到哪些引擎资产，哪些外部资产</li>
+<li>UE影视制作文件路径概览与分析</li>
+<li>UE流程中，引擎具体可以做哪些工作</li>
+</ol>
+<p> <br>
+<!-- raw HTML omitted --></p>
+<h2 id="一影视流程概述">一、影视流程概述</h2>
+<p>总结影视流程之前必须了解影视工作室的组织架构。</p>
+<p>电影电视是从镜头中看到的，一切的流程一定为镜头中的内容服务。一般来说，影视制作的工作流程如下：</p>
+<ul>
+<li>
+<p>step0. 前期准备<br>
+首先要有剧本、制片和导演，制片组织剧组，导演负责成片的艺术水准。动画电影那前期就要定好艺术风格，需要导演找艺术总监画好原话，找特效总监确定技术实现难度。无论是找演员还是建模动捕，特效经费，渲染到什么一个程度都定好方向</p>
+</li>
+<li>
+<p>step1. 模型动画（资产）<br>
+故事最重要的是人物，所以一切从建模开始。<br>
+建模师根据导演的要求建好模型，然后把模型交给动画制作。模型也分为多类，不同模型师负责不同模型，做好了放在一个大场景中，交给动画师。动画师给模型加上动作，可以是软件计算模拟，也可以是动作捕捉。这两步完成后，动画师手上就有了一份有着动画数据的场景资源文件。</p>
+</li>
+<li>
+<p>step2. 镜头与灯光材质<br>
+负责镜头的拿到场景资源文件，根据导演要求拟定好各个镜头，没有加上灯光与材质的镜头被称为Layout。Layout算是电影的草稿了，导演看过觉得没问题，Layout会交给灯光材质。打灯，上纹理，上布料。在UE中，灯光材质通过实时渲染可以直观看到改动，如果是MAYA这种只有离线渲染的引擎，灯光材质调整的时间成本是巨大的。</p>
+</li>
+<li>
+<p>step3. 特效渲染<br>
+完成上色以后，场景资源文件会交给特效，玻璃破碎，水流，雾气等等效果在这时候被添加进场景。特效完成后，导演看过去没问题，那就准备渲染出片了。<a href="%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B%E5%BA%94%E8%AF%A5%E6%9C%89%E5%BE%88%E5%A4%A7%E5%87%BA%E5%85%A5%EF%BC%8C%E4%BD%86%E6%8F%90%E5%88%B0%E7%9A%84%E6%AD%A5%E9%AA%A4%E9%83%BD%E6%98%AF%E4%B8%80%E5%AE%9A%E5%AD%98%E5%9C%A8%E7%9A%84">1</a></p>
+</li>
+</ul>
+<p> <br>
+<!-- raw HTML omitted --></p>
+<h2 id="二影视所需资产">二、影视所需资产</h2>
+<p>UE的资产文件格式分成.umap和.uasset两种，.umap就是level场景/地图，.uasset是各种资源文件的通用数据结构，一般只能在引擎种读写。</p>
+<p>.uasset在使用中（UE编辑器里）可以细分为模型，蓝图，粒子等等资源。影视制作时不同阶段所需的资源类型不同，总体上分成一下几个大类:</p>
+<blockquote>
+<p>UE内部资产</p>
+</blockquote>
+<ul>
+<li>Blueprint 蓝图类</li>
+<li>Mesh 网格
+<ul>
+<li>StaticMesh 静态网格</li>
+<li>SkeletalMesh 可活动网格（骨架）</li>
+</ul>
+</li>
+<li>Materials 材质</li>
+<li>Textures 纹理</li>
+<li>Particle 粒子</li>
+<li>Maps 场景</li>
+<li>Sequences 相机帧序列</li>
+</ul>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>外部资产</p>
+</blockquote>
+<p>外部资产，由MAYA, 3DSMAX, HOUDINI等软件事先生成。比如，模型，镜头，粒子等等文件会以.fbx/.abc等格式生成，想要走到UE流程，必须手动/批量地将这些资源文件导入引擎，引擎会自动地转换为UE可使用地.uasset/.umap格式。</p>
+<p> <br>
+<!-- raw HTML omitted --></p>
+<h2 id="三可行的工程文件结构">三、可行的工程文件结构</h2>
+<p>目前Unreal全流程尚在探索阶段，部分先行公司也只是根据项目自拟了一套自己的开发工程文件结构，并没有像传统影视行业一样有一套非常成熟的流程。这里也只是提供一种可能的文件结构。</p>
+<p>拟定的根据是流程，决定一个结构的部分因素如下：</p>
+<ul>
+<li>挂载需要区分项目和场景<br>
+不同项目需要区分，单个项目内部场景也需要区分</li>
+<li>有通用资源和特定场景的资源<br>
+场景应当使用大量通用资源和少量特定资源，以达到最高效率开发</li>
+<li>各个阶段资源都要保存<br>
+所有人都从版本管理软件中取资源，所以资源不能全在本地</li>
+<li>不同资源类别区分<br>
+UE资产后缀都一样，需要通过命名和文件夹标明不同资源</li>
+</ul>
+<!-- raw HTML omitted -->
+<p>具体文件结构根据公司项目有所区分，相似的是如下的资产结构：</p>
+<ul>
+<li>Episodes
+<ul>
+<li>Sequence
+<ul>
+<li>Scenes
+<ul>
+<li>Shots</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p> <br>
+<!-- raw HTML omitted --></p>
+<h2 id="四ue引擎能完成的工作">四、UE引擎能完成的工作</h2>
+<blockquote>
+<p>批处理</p>
+</blockquote>
+<p>UE全流程不代表所有过程都在UE中完成，建模，动画，特效，镜头等等都可以通过更专业的工具完成，之后再导入引擎。引擎生成的文件也可以批量导入其他工具中进一步操作。</p>
+<p>批处理一般通过自定义插件的形式提供，UE自身也有大量的批处理工具。</p>
+<p>已知需要的批处理：</p>
+<ul>
+<li>多目录挂载</li>
+<li>批量摄像机导入和设置</li>
+<li>批量无用/重复资源删除</li>
+<li>批量网格资源导出</li>
+<li>场景中批量生成(foliage)</li>
+</ul>
+<blockquote>
+<p>实时渲染</p>
+</blockquote>
+<blockquote>
+<p>部分特效</p>
+</blockquote>
+<p> <br>
+<!-- raw HTML omitted --></p>
+<hr>
+<p>UE的功能繁杂，目前也只是接触到皮毛——毛发系统在影视上的运用也在排期之中——可以学的东西很多。</p>
+<p>希望自己不忘每天的积累，一年后在UE和C++上有所积累。</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a href="https://TChoison.github.io/posts/test/"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+
+</div>
+</footer></main>
+    </body>
+    <script src=https://TChoison.github.io/js/navbutton.js></script>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Choi&#39;s UE开发小站</title>
+    <link>https://TChoison.github.io/</link>
+    <description>Recent content on Choi&#39;s UE开发小站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Thu, 04 Feb 2021 14:58:21 +0800</lastBuildDate><atom:link href="https://TChoison.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>测试</title>
+      <link>https://TChoison.github.io/posts/test/</link>
+      <pubDate>Thu, 04 Feb 2021 14:58:21 +0800</pubDate>
+      
+      <guid>https://TChoison.github.io/posts/test/</guid>
+      <description>测试内容 </description>
+    </item>
+    
+    <item>
+      <title>影视流程与文件结构</title>
+      <link>https://TChoison.github.io/posts/tutorials/</link>
+      <pubDate>Thu, 04 Feb 2021 13:58:05 +0800</pubDate>
+      
+      <guid>https://TChoison.github.io/posts/tutorials/</guid>
+      <description>前言 影视制作与游戏制作有共通处，也有大量区别。两者相似点在于都有模型动画特效等的制作和使用，都需要好的剧本情节，不同点在于资产使用方式和权重。
+游戏与影视最大的不同应在于交互，让玩家有参与感从而有更多的代入感。游戏中的动画往往是可复用的短动画，往往只有固定的几十几百帧，只有过场CG动画才需要大量的渲染。如果用实时渲染，那更是不需要离线渲染流程。
+仅从视觉上来看，影视的中心就是动画。动画需要足够流畅，精细，有独特的美术风格。目前能搬上银幕的电影电视剧都只能通过离线渲染才能达到最高级别的特效要求，与此同时高效流畅的实时渲染给影视行业带来的冲击也正在酝酿之中。
+ 内容提要 这里主要讨论的是影视动画剧在UE全流程中所需要的各种资产，以及这些资产的存放位置。由此会引申出一些问题的思考：
+ 影视制作大体流程 UE影视制作需要用到哪些引擎资产，哪些外部资产 UE影视制作文件路径概览与分析 UE流程中，引擎具体可以做哪些工作   一、影视流程概述 总结影视流程之前必须了解影视工作室的组织架构。
+电影电视是从镜头中看到的，一切的流程一定为镜头中的内容服务。一般来说，影视制作的工作流程如下：
+  step0. 前期准备
+首先要有剧本、制片和导演，制片组织剧组，导演负责成片的艺术水准。动画电影那前期就要定好艺术风格，需要导演找艺术总监画好原话，找特效总监确定技术实现难度。无论是找演员还是建模动捕，特效经费，渲染到什么一个程度都定好方向
+  step1. 模型动画（资产）
+故事最重要的是人物，所以一切从建模开始。
+建模师根据导演的要求建好模型，然后把模型交给动画制作。模型也分为多类，不同模型师负责不同模型，做好了放在一个大场景中，交给动画师。动画师给模型加上动作，可以是软件计算模拟，也可以是动作捕捉。这两步完成后，动画师手上就有了一份有着动画数据的场景资源文件。
+  step2. 镜头与灯光材质
+负责镜头的拿到场景资源文件，根据导演要求拟定好各个镜头，没有加上灯光与材质的镜头被称为Layout。Layout算是电影的草稿了，导演看过觉得没问题，Layout会交给灯光材质。打灯，上纹理，上布料。在UE中，灯光材质通过实时渲染可以直观看到改动，如果是MAYA这种只有离线渲染的引擎，灯光材质调整的时间成本是巨大的。
+  step3. 特效渲染
+完成上色以后，场景资源文件会交给特效，玻璃破碎，水流，雾气等等效果在这时候被添加进场景。特效完成后，导演看过去没问题，那就准备渲染出片了。1
+   二、影视所需资产 UE的资产文件格式分成.umap和.uasset两种，.umap就是level场景/地图，.uasset是各种资源文件的通用数据结构，一般只能在引擎种读写。
+.uasset在使用中（UE编辑器里）可以细分为模型，蓝图，粒子等等资源。影视制作时不同阶段所需的资源类型不同，总体上分成一下几个大类:
+ UE内部资产
+  Blueprint 蓝图类 Mesh 网格  StaticMesh 静态网格 SkeletalMesh 可活动网格（骨架）   Materials 材质 Textures 纹理 Particle 粒子 Maps 场景 Sequences 相机帧序列   外部资产</description>
+    </item>
+    
+    <item>
+      <title>get in touch</title>
+      <link>https://TChoison.github.io/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://TChoison.github.io/contact/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
